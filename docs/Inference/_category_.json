@@ -1,0 +1,8 @@
+{
+  "label": "Inference",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "LLMで推論を行うためのライブラリやフレームワーク、Tipsについてのセクションです。"
+  }
+}

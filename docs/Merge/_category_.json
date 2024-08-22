@@ -1,0 +1,8 @@
+{
+  "label": "Merge",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "description": "LLMにおけるMerge技術について、手法や一般的な知見をまとめたセクションです。"
+  }
+}

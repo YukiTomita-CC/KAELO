@@ -1,0 +1,8 @@
+{
+  "label": "Optimization",
+  "position": 11,
+  "link": {
+    "type": "generated-index",
+    "description": "LLMの推論や学習を行う際の高速化や最適化についての情報をまとめたセクションです。"
+  }
+}

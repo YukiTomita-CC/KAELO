@@ -1,0 +1,8 @@
+{
+  "label": "Prompt-Tuning",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "モデルへの入力となるプロンプトについて、一般的なベストプラクティスや手法を紹介するセクションです。"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "label": "Quantize",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "LLMにおける量子化について、各手法やその実行方法を紹介するセクションです。"
+  }
+}

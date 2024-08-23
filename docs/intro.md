@@ -2,46 +2,46 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# はじめに
+## このサイトについて
+このサイトは日本におけるローカルLLMに関する知識や情報交換を行う目的で作成されました。\
+現時点では英語圏などと比較して情報や知見が集まりにくい環境だと感じているため、少しでもコミュニティの発展に寄与できれば幸いです。
+:::info
 
-Let's discover **Docusaurus in less than 5 minutes**.
+このサイトにおける`ローカルLLM`の定義は、
+- 推論や学習に必要なニューラルネットワークの重み等が公開されており、オフラインでそれらが可能なこと
+- テキストを入力として、テキストもしくは埋め込み表現を出力するモデルであること
 
-## Getting Started
+とします。
 
-Get started by **creating a new site**.
+`Large`の基準が曖昧になっていることもあり、モデルのサイズは問いません。\
+また、Transformer以外のアーキテクチャ(RWKVやManbaなど)も同様に扱います。
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+:::
 
-### What you'll need
+:::warning
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+このサイトの作成者は自然言語処理、ひいては機械学習、プログラムを生業としている者ではありません。\
+そのため、間違った解釈をしてしまっている可能性も十分考えられます。\
+正確な情報をまとめられるよう努めていますが、万が一誤りを見つけられた場合はご連絡ください。
 
-## Generate a new site
+:::
 
-Generate a new Docusaurus site using the **classic template**.
+## なぜローカルか？
+OpenAIやGoogleによるSOTAなクローズドモデルとの最も大きな違いは、**モデルとそれを扱うライブラリが手元にあること**だと思っています。
+  - クローズドモデルに対し、どんなにチューニングを行っても企業側がモデルをアップデートしたり削除すれば同じものは残らない
+  - 対して、ローカルなモデルは適切な管理を行えさえいれば手元に残り続ける
 
-The classic template will automatically be added to your project after you run the command:
+何かの課題を解決する機械学習モデルである以上、実世界の変化に沿って変わり続ける必要はあるでしょうが、そのタイミングは私たちが決めるべきです。
+    
+これはどちらが優れているということでもなく、汎用性においては間違いなくクローズドモデルがトップです。\
+問題はクローズドモデルに**依存しすぎること**だと思います。\
+適度にその技術の恩恵を享受しつつ、自身が解決すべきタスクは自身のローカルなモデルで解決するのがベストではないでしょうか。
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+セキュリティ面でのメリットも多少はあるでしょうが、ローカルLLMでも実運用にシフトするとなるとセキュリティリスクは同様に生じると思われます。
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## 運用について
+基本的には一人体制で情報収集や記事の作成を行っています。
 
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+もし協力してくださる方がいらっしゃればXやGitHubにてご連絡ください。\
+GitHubのIssueやPull Requestでの指摘や記事の修正も是非ご検討ください。

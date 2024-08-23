@@ -2,5 +2,5 @@
 sidebar_position: 1
 ---
 
-# Original Transformer
+# transformersで推論
 ## Overview

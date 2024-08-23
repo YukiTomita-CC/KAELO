@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkaelo=self.webpackChunkkaelo||[]).push([[956],{8121:e=>{e.exports=JSON.parse('{"tags":[{"label":"Other","permalink":"/KAELO/blog/tags/other","count":1}]}')}}]);

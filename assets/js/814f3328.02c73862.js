@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkaelo=self.webpackChunkkaelo||[]).push([[7472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"\u306f\u3058\u3081\u306b","permalink":"/KAELO/blog/first-post","unlisted":false,"date":"2024-08-22T00:00:00.000Z"}]}')}}]);

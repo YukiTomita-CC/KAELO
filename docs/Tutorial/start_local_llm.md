@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # ローカルLLMを始める
@@ -8,7 +8,7 @@ sidebar_position: 1
 ## 準備～実行
 :::info
 
-**Python3.6以上**が既にインストールされている**Windows**を対象としています。\
+**Python3.7以上**が既にインストールされている**Windows**を対象としています。\
 GPUが搭載されていないPCでも実行できるよう、CPU推論でのチュートリアルとなっています。
 
 :::

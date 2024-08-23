@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'K.A.E.L.O.',
   tagline: 'Knowledge Aggregation and Exchange for LocalLLM',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/omocha_robot.ico',
 
   // Set the production url of your site here
   url: 'https://YukiTomita-CC.github.io',
@@ -78,7 +78,7 @@ const config = {
         title: 'K.A.E.L.O.',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/omocha_robot.png',
         },
         items: [
           {
@@ -94,6 +94,11 @@ const config = {
             position: 'right',
           },
         ],
+      },
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true
+        }
       },
       footer: {
         style: 'dark',

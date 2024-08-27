@@ -4,6 +4,51 @@ sidebar_position: 1
 
 # Transformer
 ## Overview
+Transformerは2017年にGoogleの研究者らによって発表された、シーケンスからシーケンスへ変換することを目的とした新しいニューラルネットワークのアーキテクチャです。
+
+Transformerは**Attention**という機構を持つ、Encoder-Decoderモデルです。\
+Attention機構は入力シーケンスのある要素について、他の要素にどれだけ注目すべきかを表現します。\
+この処理を何重にも繰り返すことで単純な単語の意味から文脈に沿った意味まで幅広い表現を獲得できるとされています。
+
+これ以前では複雑なRNNやCNNが主要なモデルとなっていましたが、Transformer発表以降は皆さんご存じの通り、自然言語処理分野におけるデファクトスタンダードとなりつつあります。
+
+## Paper
+Title: **Attention Is All You Need**
+
+- [Arxiv](https://arxiv.org/abs/1706.03762)
+
+## Description
+上記の論文で示されているアーキテクチャは以下のようになっています。
+<img
+  src={require('./img/transformer_0.png').default}
+  style={{ width: '400px' }}
+/>
+
+左がEncoder、右がDecoderとなっています。
+
+ここで、Multi-Head Attentionと表記されているブロックがTransformerアーキテクチャにおいて重要な役割をもつAttention機構です。
+
+では、Transformerアーキテクチャを入力から順に見ていきます。
+
+### Inputs -> Input Embedding
+入力されるテキストは事前にTokenizerによって自然言語からtoken単位のシーケンスに変換されます。
+
+例として入力シーケンス長は`seq_length`としましょう。
+
+次に、入力されたシーケンスはそれぞれのtokenについて、モデルが学習しているEmbedding情報によって`(seq_length, hidden_size)`の行列に整形されます。\
+ここで、Embedding情報は`(vocab_size, hidden_size)`の行列の形になっていて、ルックアップテーブルのような形式で、このtoken_idならこのEmbeddingという風に参照されます。\
+
+`vocab_size`はモデルが保持している語彙数で、hidden_sizeはモデルのEmbeddingの次元です。
+
+### Positional Encoding
+`(seq_length, hidden_size)`の行列をEncoderに入力する前にシーケンスの何番目なのかの情報を付与する必要があります。
+
+論文では
+
+### Attention
+Attentionは入力シーケンスに対して、それぞれの要素が他の要素をどれくらい注意すべきかを計算するものです。
+
+まず、基本となるScaled Dot Product Attentionは以下のような計算式になります。
 
 ## Note
 - Transformerは2017年にGoogleの研究者等によって発表された

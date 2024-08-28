@@ -36,7 +36,7 @@ Title: **Attention Is All You Need**
 例として入力シーケンス長は`seq_length`としましょう。
 
 次に、入力されたシーケンスはそれぞれのtokenについて、モデルが学習しているEmbedding情報によって`(seq_length, hidden_size)`の行列に整形されます。\
-ここで、Embedding情報は`(vocab_size, hidden_size)`の行列の形になっていて、ルックアップテーブルのような形式で、このtoken_idならこのEmbeddingという風に参照されます。\
+ここで、Embedding情報は`(vocab_size, hidden_size)`の行列の形になっていて、ルックアップテーブルのような形式で、このtoken_idならこのEmbeddingという風に参照されます。
 
 `vocab_size`はモデルが保持している語彙数で、hidden_sizeはモデルのEmbeddingの次元です。
 
@@ -46,9 +46,58 @@ Title: **Attention Is All You Need**
 論文では
 
 ### Attention
-Attentionは入力シーケンスに対して、それぞれの要素が他の要素をどれくらい注意すべきかを計算するものです。
+Transformerにおける重要なコンポーネントの一つであるAttention機構です。
 
-まず、基本となるScaled Dot Product Attentionは以下のような計算式になります。
+Multi-Head Attentionを理解するためにはそれを構成する部品となるScaled Dot-Product Attentionを理解する必要があります。
+
+#### Scaled Dot-Product Attention
+Scaled Dot-Product Attentionは次の式で表されます。
+
+$$
+Attention(Q,K,V)=softmax({QK^T \over {\sqrt{d_k}}})V
+$$
+
+ここで、$Q,K,V$はそれぞれQuery,Key,Valueを指しており、QueryとKeyの積を取り類似度を計算し、そのsoftmaxとValueの積を取ることで、シーケンスの注目すべき要素が強調された表現となりAttention機構から出力される仕組みとなっています。
+
+しかし、論文の図ではPositional EncodingされたInputが3本に分かれてMulti-Head Attentionに入っています。\
+これはQuery,Key,Value全てに同じInputを入力することを意味しています。
+
+入力を全て同じにしてしまうと、類似度も何もないのでは？と思いますよね。
+
+安心してください。確かに入力は同じなのですが、Multi-Head Attentionに入る前にそれぞれ別の重み行列を使って線形変換を行います。
+
+#### Multi-Head Attention
+Multi-Head AttentionはScaled Dot-Product Attentionを複数個並列に行うものです。\
+しかし、ただ並列に行うだけでは意味がありません。
+
+Multi-Head AttentionではQuery,Key,ValueをScaled Dot-Product Attentionする前に$W_i^Q,W_i^K,W_i^V$という重み行列によって線形変換されます。
+
+具体的に示してみましょう。今、入力のサイズは`(seq_length, hidden_size)`でした。
+
+そして、Multi-Head Attentionのhead、並列数とも言える数をhとします。
+
+ここで
+$$
+W_i^Q \in \mathbb{R^{d_{model} \times d_k}}\\
+W_i^K \in \mathbb{R^{d_{model} \times d_k}}\\
+W_i^V \in \mathbb{R^{d_{model} \times d_v}}
+$$
+です。
+
+まず、$QW_i^Q$は`(seq_length, hidden_size)`と`(hidden_size, hidden_size/h)`の行列の積なので`(seq_length, hidden_size/h)`となります。
+
+次に$(KW_i^K)^T$は同様に`(seq_length, hidden_size/h)`となって転置され`(hidden_size/h, seq_length)`となります。
+
+よって$QW_i^Q(KW_i^K)^T$は`(seq_length, seq_length)`の行列です。これを$\sqrt{d_k}$で除してsoftmaxを適用します。
+
+そして
+$$
+Attention(QW_i^Q,KW_i^K,VW_i^V)=softmax({QW_i^Q(KW_i^K)^T \over {\sqrt{d_k}}})VW_i^V
+$$
+は、`(seq_length, seq_length)`と`(seq_length, hidden_size/h)`の行列の積なので`(seq_length, hidden_size/h)`の行列になります。
+
+これをh個行い、作成したh個の`(seq_length, hidden_size/h)`の行列を横にconcatします。\
+そうすると`(seq_length, hidden_size)`になり、Attentionブロックに入力される前のサイズになりました。
 
 ## Note
 - Transformerは2017年にGoogleの研究者等によって発表された
